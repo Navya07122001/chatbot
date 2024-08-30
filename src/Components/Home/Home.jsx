@@ -98,7 +98,9 @@ export default function Home() {
                             key={index}
                             updateChat={setChat}
                             setSelectedChatId={setSelectedChatId}
-                            showFeedbackModal={() => setShowModal(true)}
+                            showFeedbackModal={() =>{
+                               
+                                 setShowModal(true)}}
                         />
                     ))}
                 </Stack>

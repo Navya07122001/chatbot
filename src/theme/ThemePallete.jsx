@@ -8,10 +8,10 @@ export const getThemePallete = (mode) => ({
                 primary: {
                     main: '#D7C7F4',
                     light: '#fff',
-                    dark: '#AF9FCD',
+                    dark: '##ebcef2',
                     bglight: '#fafafa',
                     bgtheme: '#FAF7FF',
-                    bg: '#AF9FCD'
+                    bg: '##d0baf7'
                 },
                 text: {
                     primary: '#000000',
@@ -28,7 +28,7 @@ export const getThemePallete = (mode) => ({
                     bg: '#2a2730'
                 },
                 text: {
-                    primary: '#ffffff',
+                    primary: '#ebcef2',
                     secondary: 'rgba(255,255,255,0.7)',
                 }
             }
@@ -75,7 +75,7 @@ export const getThemePallete = (mode) => ({
                 outlined: {
                     fontFamily: 'Ubuntu, sans-serif',
                     color: mode == 'light' ? '#000' : '#fff',
-                    borderColor: mode == 'light' ? '#9785BA' : '#3d3b41',
+                    borderColor: mode == 'light' ? '#9785BA' : '#ebcef2',
                     '&:hover': {
                         background: mode == 'light' ? '#AF9FCD' : '#2a2730',
                     }

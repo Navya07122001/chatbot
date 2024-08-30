@@ -97,6 +97,7 @@ export default function ChattingCard({ details, showFeedbackModal, updateChat, s
                             <IconButton
                                 size='small'
                                 onClick={() => {
+                                  
                                     setSelectedChatId(details.id)
                                     showFeedbackModal()
                                 }}

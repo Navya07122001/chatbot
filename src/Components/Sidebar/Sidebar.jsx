@@ -1,4 +1,5 @@
 import React from 'react';
+import edit from '../../assets/edit.png'
 import {
     Box,
     Container,
@@ -85,8 +86,8 @@ function Sidebar({setChat,closeMenu}) {
                       New Chat
                   </Typography>
               </Stack>
-
-              <AddCommentIcon sx={{ color: 'text.primary' }} />
+                <img src={edit} height="40px"/>
+               {/* <AddCommentIcon sx={{ color: 'text.primary' }} />  */}
 
           </Stack>
       </Link>

@@ -5,7 +5,6 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useContext } from 'react';
-
 export default function Navbar() {
 
     const { handleMobileMenu } = useOutletContext();
@@ -50,11 +49,11 @@ export default function Navbar() {
             >
                 <Typography
                     textTransform={'capitalize'}
-                    fontSize={10}
+                    fontSize={15}
                 >
                     {mode}
                 </Typography>
-                <IconButton onClick={() =>
+                <IconButton  onClick={() =>
                     setMode(prev => {
                         if (prev == 'light') {
                             return 'dark'
@@ -66,10 +65,10 @@ export default function Navbar() {
                 }>
                     {mode == "light"
                         ? (
-                            <Brightness4Icon />
+                            <Brightness4Icon height={20} width={20}/>
                         )
                         : (
-                            <Brightness7Icon />
+                            <Brightness7Icon height={20} width={20}/>
                         )
                     }
                 </IconButton>

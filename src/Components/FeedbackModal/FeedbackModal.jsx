@@ -1,44 +1,91 @@
-import React from 'react';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { Box, Stack, Typography, Modal, IconButton, TextField, Button } from '@mui/material'
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import CloseIcon from '@mui/icons-material/Close';
+import { useState } from 'react';
 
-function FeedbackModal() {
-    const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function FeedbackModal({ open, handleClose, chatId, updateChat }) {
+
+    const [input, setInput] = useState('')
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '95%',
+        bgcolor: 'primary.bgtheme',
+        boxShadow: 24,
+        p: { xs: 2, md: 3 },
+        maxWidth: 720,
+        borderRadius: '10px'
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        updateChat(prev => (
+            prev.map(item => {
+                if (item.id == chatId) {
+                    return { ...item, feedback: input }
+                }
+                else {
+                    return { ...item }
+                }
+            })
+        ))
+
+        setInput('')
+
+        handleClose()
+    }
+
     return (
-        <div>
-             <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-        </div>
-    );
-}
+        <Modal
+            open={open}
+            onClose={handleClose}
+        >
+            <Box sx={style}>
 
-export default FeedbackModal;
+                <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'space-between'}>
+                    <Stack direction={'row'} spacing={{ xs: .5, md: 2 }} alignItems={'center'}>
+                        <FeedbackIcon />
+                        <Typography variant={'heading'} fontSize={{ xs: 14, md: 18 }}>
+                            Provide Additional Feedback
+                        </Typography>
+                    </Stack>
+
+                    <IconButton onClick={handleClose} >
+                        <CloseIcon />
+                    </IconButton>
+                </Stack>
+
+                <Box
+                    component='form'
+                    pt={3}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: "flex-end",
+                        gap: '12px'
+                    }}
+                    onSubmit={handleSubmit}
+                >
+                    <TextField
+                        multiline
+                        rows={6}
+                        sx={{ width: 1 }}
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
+                        required
+                    />
+                    <Button
+                        variant='contained'
+                        type='submit'
+                    >
+                        Submit
+                    </Button>
+                </Box>
+            </Box>
+        </Modal>
+    )
+}
